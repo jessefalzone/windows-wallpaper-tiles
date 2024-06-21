@@ -12,21 +12,29 @@ cat <<EOL >$OUTPUT_HTML
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Windows Tiled Backgrounds</title>
 <style>
+:root {
+--gray: #c3c3c3;
+}
 body {
-  background-image: url("./images/Windows3.1/Redbrick.bmp");
   height: 100%;
   margin: 0;
   line-height: 1.5;
 }
 #controls {
-  background-color: #c3c3c3;
-  padding: 20px;
-  border-bottom: 4px solid black;
-  border-right: 4px solid black;
-  border-left: 4px solid white;
-  border-top: 4px solid white;
-  max-width:800px;
   margin: 20px;
+  background-color: var(--gray);
+  max-width:800px;
+  border-top: 2px solid var(--gray);
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  border-left: 2px solid var(--gray);
+}
+#inner-wrapper {
+  padding: 20px;
+  border-top: 2px solid white;
+  border-right: 2px solid #555;
+  border-bottom: 2px solid #555;
+  border-left: 2px solid white;
 }
 fieldset {
   margin: 20px 0;
@@ -42,7 +50,7 @@ body:has(fieldset[data-category="Patterns"] input:checked) {
 EOL
 
 # Create CSS rules for each image
-find "$IMAGE_DIR" -type f | while IFS= read -r filepath; do
+find "$IMAGE_DIR" -type f \( -iname "*.bmp" -o -iname "*.png" -o -iname "*.jpeg" \) | while IFS= read -r filepath; do
   # Extract filename without extension
   filename=$(basename -- "$filepath")
   filename="${filename%.*}"
@@ -66,6 +74,7 @@ cat <<EOL >>$OUTPUT_HTML
 </head>
 <body>
 <div id="controls">
+<div id="inner-wrapper">
 <h1>Windows Tile Backgrounds</h1>
 EOL
 
@@ -96,7 +105,7 @@ find "$IMAGE_DIR" -mindepth 1 -type d | sort | while IFS= read -r subdir; do
     # Add HTML for each radio button
     echo "<label><input type=\"radio\" id=\"$valid_id\" name=\"background\" value=\"$valid_value\"$(if $checked; then echo " checked"; fi)><span>$filename</span></label>" >>$OUTPUT_HTML
     checked=false
-  done < <(find "$subdir" -maxdepth 1 -type f -print0 | sort -z)
+  done < <(find "$subdir" -maxdepth 1 -type f \( -iname "*.bmp" -o -iname "*.png" -o -iname "*.jpeg" \) -print0 | sort -z)
 
   # Close the fieldset
   echo "</fieldset>" >>"$OUTPUT_HTML"
@@ -104,6 +113,7 @@ done
 
 # Complete the HTML
 cat <<EOL >>"$OUTPUT_HTML"
+</div>
 </div>
 </body>
 </html>

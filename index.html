@@ -5,21 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Windows Tiled Backgrounds</title>
 <style>
+:root {
+--gray: #c3c3c3;
+}
 body {
-  background-image: url("./images/Windows3.1/Redbrick.bmp");
   height: 100%;
   margin: 0;
   line-height: 1.5;
 }
 #controls {
-  background-color: #c3c3c3;
-  padding: 20px;
-  border-bottom: 4px solid black;
-  border-right: 4px solid black;
-  border-left: 4px solid white;
-  border-top: 4px solid white;
-  max-width:800px;
   margin: 20px;
+  background-color: var(--gray);
+  max-width:800px;
+  border-top: 2px solid var(--gray);
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  border-left: 2px solid var(--gray);
+}
+#inner-wrapper {
+  padding: 20px;
+  border-top: 2px solid white;
+  border-right: 2px solid #555;
+  border-bottom: 2px solid #555;
+  border-left: 2px solid white;
 }
 fieldset {
   margin: 20px 0;
@@ -224,9 +232,6 @@ body:has(input[value="Windows30_Paper"]:checked) {
 body:has(input[value="Windows30_Ribbons"]:checked) {
   background-image: url("./images/Windows 3.0/Ribbons.bmp");
 }
-body:has(input[value="Windows30_Boxes"]:checked) {
-  background-image: url("./images/Windows 3.0/Boxes.jpg");
-}
 body:has(input[value="Windows30_Pyramid"]:checked) {
   background-image: url("./images/Windows 3.0/Pyramid.png");
 }
@@ -335,9 +340,6 @@ body:has(input[value="Windows95_Blocks"]:checked) {
 body:has(input[value="Windows95_Circles"]:checked) {
   background-image: url("./images/Windows 95/Circles.bmp");
 }
-body:has(input[value="Windows95_Clouds"]:checked) {
-  background-image: url("./images/Windows 95/Clouds.bmp");
-}
 body:has(input[value="Windows95_BlueRivets"]:checked) {
   background-image: url("./images/Windows 95/Blue Rivets.bmp");
 }
@@ -351,6 +353,7 @@ body:has(input[value="Windows95_Forest"]:checked) {
 </head>
 <body>
 <div id="controls">
+<div id="inner-wrapper">
 <h1>Windows Tile Backgrounds</h1>
 <fieldset data-category="Patterns">
 <legend>Patterns</legend>
@@ -388,7 +391,6 @@ body:has(input[value="Windows95_Forest"]:checked) {
 </fieldset>
 <fieldset data-category="Windows 3.0">
 <legend>Windows 3.0</legend>
-<label><input type="radio" id="Windows30_Boxes" name="background" value="Windows30_Boxes"><span>Boxes</span></label>
 <label><input type="radio" id="Windows30_Paper" name="background" value="Windows30_Paper"><span>Paper</span></label>
 <label><input type="radio" id="Windows30_Party" name="background" value="Windows30_Party"><span>Party</span></label>
 <label><input type="radio" id="Windows30_Pyramid" name="background" value="Windows30_Pyramid"><span>Pyramid</span></label>
@@ -424,7 +426,6 @@ body:has(input[value="Windows95_Forest"]:checked) {
 <label><input type="radio" id="Windows95_Bubbles" name="background" value="Windows95_Bubbles"><span>Bubbles</span></label>
 <label><input type="radio" id="Windows95_CarvedStone" name="background" value="Windows95_CarvedStone"><span>Carved Stone</span></label>
 <label><input type="radio" id="Windows95_Circles" name="background" value="Windows95_Circles"><span>Circles</span></label>
-<label><input type="radio" id="Windows95_Clouds" name="background" value="Windows95_Clouds"><span>Clouds</span></label>
 <label><input type="radio" id="Windows95_Forest" name="background" value="Windows95_Forest"><span>Forest</span></label>
 <label><input type="radio" id="Windows95_GoldWeave" name="background" value="Windows95_GoldWeave"><span>Gold Weave</span></label>
 <label><input type="radio" id="Windows95_Houndstooth" name="background" value="Windows95_Houndstooth"><span>Houndstooth</span></label>
@@ -472,6 +473,7 @@ body:has(input[value="Windows95_Forest"]:checked) {
 <label><input type="radio" id="WindowsNT40_Zapotec16" name="background" value="WindowsNT40_Zapotec16"><span>Zapotec 16</span></label>
 <label><input type="radio" id="WindowsNT40_Zapotec" name="background" value="WindowsNT40_Zapotec"><span>Zapotec</span></label>
 </fieldset>
+</div>
 </div>
 </body>
 </html>
