@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows Tiled Backgrounds</title>
+    <style>
+  body {
+  display: grid;
+  grid-template-rows: min-content auto 1fr;
+  grid-template-columns: min-content auto 1fr;
+  background: url('https://images.unsplash.com/photo-1558051815-0f18e64e6280?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ');
+  background-size: cover;
+  min-height: 100vh;
+}
+textarea {
+  width: 100px;
+  height: 20px;
+  opacity: 0;
+  cursor: default;
+  grid-row: 1;
+  grid-column: 1;
+}
+.mask {
+  grid-row: 1;
+  grid-column: 1;
+  width: 100%;
+  height: calc(100% - 20px);
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    height: 20px;
+    left: 0;
+    right: 20px;
+    bottom: -20px;
+    background: inherit;
+  }
+}
+.note {
+  position: relative;
+  grid-row: 2;
+  grid-column: 2;
+  color: rgba(#000,.8);
+  background-color: rgb(255,222,30);
+  background-image: linear-gradient(
+    160deg,
+    rgb(255,222,30) 50%,
+    rgb(255,250,80)
+  );
+  width: 200px;
+  min-height: 160px;
+  margin: 0 -110px;
+  padding-top: 20px;
+  box-shadow:
+    0 -20px 0 rgb(255,222,30),
+    -2px 6px 6px rgba(0,0,0,.4)
+  ;
+  text-align: center;
+  font-family: 'marker felt', 'comic sans ms', sans-serif;
+  font-size: 24px;
+  line-height: 1.3;
+  padding: 1em;
+  box-sizing: border-box;
+  transform: rotate(-1deg);
+  transition: all .3s ease;
+  &:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgb(180,8,0);
+    background-image:
+      radial-gradient(
+        at 60% 30%,
+        #f99,
+        red 20%,
+        rgb(180,8,0)
+    );
+    background-position: 20% 10%;
+    cursor: pointer;
+    position: absolute;
+    top: -20px;
+    left: 90px;
+    pointer-events: none;
+    transform: scale(.8);
+    box-shadow: -5px 10px 3px -8.5px #000, -1px 7px 12px -5px #000;
+    transition: all .3s ease;
+  }
+}
+
+textarea:hover ~ .note {
+  &:before {
+    transform: scale(.9);
+    box-shadow: -5px 10px 6px -8.5px #000, -1px 7px 16px -4px #000;
+  }
+}
+
+textarea:active ~ .note {
+  transform: scale(1.05) rotate(-2deg);
+  box-shadow:
+    0 -20px 0 rgb(255,222,30),
+    -5px 14px 14px rgba(0,0,0,.3)
+  ;
+}
+body {
+  background-image: url("./images/Windows3.1/Redbrick.bmp");
+  height: 100%;
+  margin: 0;
+  line-height: 1.5;
+}
+#controls {
+  background-color: #c3c3c3;
+  padding: 20px;
+  border-bottom: 4px solid black;
+  border-right: 4px solid black;
+  border-left: 4px solid white;
+  border-top: 4px solid white;
+  max-width:800px;
+  margin: 20px;
+}
+fieldset {
+  margin: 20px 0;
+}
+label {
+  white-space: nowrap;
+  margin: 0 5px;
+}
+body:has(fieldset[data-category="Patterns"] input:checked) {
+  image-rendering: pixelated;
+  background-size: 16px;
+}
+body:has(input[value="WindowsNT40_RiverSumida"]:checked) {
+  background-image: url("./images/Windows NT 4.0/River Sumida.bmp");
+}
+body:has(input[value="WindowsNT40_FurryDog16"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Furry Dog 16.bmp");
+}
+body:has(input[value="WindowsNT40_BlueLace"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Blue Lace.bmp");
+}
+body:has(input[value="WindowsNT40_HikingBoots"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Hiking Boots.bmp");
+}
+body:has(input[value="WindowsNT40_Seaside16"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Seaside 16.bmp");
+}
+body:has(input[value="WindowsNT40_Solstice"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Solstice.bmp");
+}
+body:has(input[value="WindowsNT40_Zapotec"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Zapotec.bmp");
+}
+body:has(input[value="WindowsNT40_FeatherTexture"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Feather Texture.bmp");
+}
+body:has(input[value="WindowsNT40_FurryDog"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Furry Dog.bmp");
+}
+body:has(input[value="WindowsNT40_Zapotec16"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Zapotec 16.bmp");
+}
+body:has(input[value="WindowsNT40_Upstream16"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Upstream 16.bmp");
+}
+body:has(input[value="WindowsNT40_SoapBubbles"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Soap Bubbles.bmp");
+}
+body:has(input[value="WindowsNT40_MapleTrails16"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Maple Trails 16.bmp");
+}
+body:has(input[value="WindowsNT40_Greenstone"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Greenstone.bmp");
+}
+body:has(input[value="WindowsNT40_Petroglyph16"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Petroglyph 16.bmp");
+}
+body:has(input[value="WindowsNT40_PrairieWind"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Prairie Wind.bmp");
+}
+body:has(input[value="WindowsNT40_CoffeeBean16"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Coffee Bean 16.bmp");
+}
+body:has(input[value="WindowsNT40_FiddleHeads"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Fiddle Heads.bmp");
+}
+body:has(input[value="WindowsNT40_Snakeskin"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Snakeskin.bmp");
+}
+body:has(input[value="WindowsNT40_Geometrix"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Geometrix.bmp");
+}
+body:has(input[value="WindowsNT40_Seaside"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Seaside.bmp");
+}
+body:has(input[value="WindowsNT40_Rhododendron"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Rhododendron.bmp");
+}
+body:has(input[value="WindowsNT40_MapleTrails"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Maple Trails.bmp");
+}
+body:has(input[value="WindowsNT40_BlueRivets"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Blue Rivets.bmp");
+}
+body:has(input[value="WindowsNT40_HazyAutumn16"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Hazy Autumn 16.bmp");
+}
+body:has(input[value="WindowsNT40_Leather16"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Leather 16.bmp");
+}
+body:has(input[value="WindowsNT40_SwimmingPool"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Swimming Pool.bmp");
+}
+body:has(input[value="WindowsNT40_SantaFeStucco"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Santa Fe Stucco.bmp");
+}
+body:has(input[value="WindowsNT40_CoffeeBean"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Coffee Bean.bmp");
+}
+body:has(input[value="WindowsNT40_GoneFishing"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Gone Fishing.bmp");
+}
+body:has(input[value="WindowsNT40_BlueMonday"]:checked) {
+  background-image: url("./images/Windows NT 4.0/Blue Monday.bmp");
+}
+body:has(input[value="Patterns_95Boxes"]:checked) {
+  background-image: url("./images/Patterns/95-Boxes.png");
+}
+body:has(input[value="Patterns_95Critters"]:checked) {
+  background-image: url("./images/Patterns/95-Critters.png");
+}
+body:has(input[value="Patterns_CargoNet"]:checked) {
+  background-image: url("./images/Patterns/Cargo Net.png");
+}
+body:has(input[value="Patterns_95Weave"]:checked) {
+  background-image: url("./images/Patterns/95-Weave.png");
+}
+body:has(input[value="Patterns_Tile"]:checked) {
+  background-image: url("./images/Patterns/Tile.png");
+}
+body:has(input[value="Patterns_Dizzy"]:checked) {
+  background-image: url("./images/Patterns/Dizzy.png");
+}
+body:has(input[value="Patterns_Scales"]:checked) {
+  background-image: url("./images/Patterns/Scales.png");
+}
+body:has(input[value="Patterns_Bricks"]:checked) {
+  background-image: url("./images/Patterns/Bricks.png");
+}
+body:has(input[value="Patterns_Daisies"]:checked) {
+  background-image: url("./images/Patterns/Daisies.png");
+}
+body:has(input[value="Patterns_Key"]:checked) {
+  background-image: url("./images/Patterns/Key.png");
+}
+body:has(input[value="Patterns_Colosseum"]:checked) {
+  background-image: url("./images/Patterns/Colosseum.png");
+}
+body:has(input[value="Patterns_95Diamonds"]:checked) {
+  background-image: url("./images/Patterns/95-Diamonds.png");
+}
+body:has(input[value="Patterns_LiveWire"]:checked) {
+  background-image: url("./images/Patterns/Live Wire.png");
+}
+body:has(input[value="Patterns_Plaid"]:checked) {
+  background-image: url("./images/Patterns/Plaid.png");
+}
+body:has(input[value="Patterns_FieldEffect"]:checked) {
+  background-image: url("./images/Patterns/Field Effect.png");
+}
+body:has(input[value="Patterns_95Waffle"]:checked) {
+  background-image: url("./images/Patterns/95-Waffle.png");
+}
+body:has(input[value="Patterns_95Paisley"]:checked) {
+  background-image: url("./images/Patterns/95-Paisley.png");
+}
+body:has(input[value="Patterns_95Spinner"]:checked) {
+  background-image: url("./images/Patterns/95-Spinner.png");
+}
+body:has(input[value="Patterns_Rounder"]:checked) {
+  background-image: url("./images/Patterns/Rounder.png");
+}
+body:has(input[value="Patterns_Cobblestones"]:checked) {
+  background-image: url("./images/Patterns/Cobblestones.png");
+}
+body:has(input[value="Patterns_Triangles"]:checked) {
+  background-image: url("./images/Patterns/Triangles.png");
+}
+body:has(input[value="Patterns_Stone"]:checked) {
+  background-image: url("./images/Patterns/Stone.png");
+}
+body:has(input[value="Patterns_Buttons"]:checked) {
+  background-image: url("./images/Patterns/Buttons.png");
+}
+body:has(input[value="Patterns_WafflesRevenge"]:checked) {
+  background-image: url("./images/Patterns/Waffle's Revenge.png");
+}
+body:has(input[value="Patterns_95critters"]:checked) {
+  background-image: url("./images/Patterns/95-critters.bmp");
+}
+body:has(input[value="Patterns_Circuits"]:checked) {
+  background-image: url("./images/Patterns/Circuits.png");
+}
+body:has(input[value="Patterns_95Pattern"]:checked) {
+  background-image: url("./images/Patterns/95-Pattern.png");
+}
+body:has(input[value="Patterns_95Quilt"]:checked) {
+  background-image: url("./images/Patterns/95-Quilt.png");
+}
+body:has(input[value="Patterns_95Tulip"]:checked) {
+  background-image: url("./images/Patterns/95-Tulip.png");
+}
+body:has(input[value="Patterns_Thatches"]:checked) {
+  background-image: url("./images/Patterns/Thatches.png");
+}
+body:has(input[value="Patterns_95Scottie"]:checked) {
+  background-image: url("./images/Patterns/95-Scottie.png");
+}
+body:has(input[value="Windows30_Paper"]:checked) {
+  background-image: url("./images/Windows 3.0/Paper.png");
+}
+body:has(input[value="Windows30_Ribbons"]:checked) {
+  background-image: url("./images/Windows 3.0/Ribbons.bmp");
+}
+body:has(input[value="Windows30_Boxes"]:checked) {
+  background-image: url("./images/Windows 3.0/Boxes.jpg");
+}
+body:has(input[value="Windows30_Pyramid"]:checked) {
+  background-image: url("./images/Windows 3.0/Pyramid.png");
+}
+body:has(input[value="Windows30_Party"]:checked) {
+  background-image: url("./images/Windows 3.0/Party.bmp");
+}
+body:has(input[value="Windows31_Redbrick"]:checked) {
+  background-image: url("./images/Windows 3.1/Redbrick.bmp");
+}
+body:has(input[value="Windows31_Zigzag"]:checked) {
+  background-image: url("./images/Windows 3.1/Zigzag.bmp");
+}
+body:has(input[value="Windows31_Argyle"]:checked) {
+  background-image: url("./images/Windows 3.1/Argyle.bmp");
+}
+body:has(input[value="Windows31_Arches"]:checked) {
+  background-image: url("./images/Windows 3.1/Arches.bmp");
+}
+body:has(input[value="Windows31_Egypt"]:checked) {
+  background-image: url("./images/Windows 3.1/Egypt.bmp");
+}
+body:has(input[value="Windows31_Thatch"]:checked) {
+  background-image: url("./images/Windows 3.1/Thatch.bmp");
+}
+body:has(input[value="Windows31_Rivets"]:checked) {
+  background-image: url("./images/Windows 3.1/Rivets.bmp");
+}
+body:has(input[value="Windows31_Leaves"]:checked) {
+  background-image: url("./images/Windows 3.1/Leaves.bmp");
+}
+body:has(input[value="Windows31_Winlogo"]:checked) {
+  background-image: url("./images/Windows 3.1/Winlogo.bmp");
+}
+body:has(input[value="Windows31_Marble"]:checked) {
+  background-image: url("./images/Windows 3.1/Marble.bmp");
+}
+body:has(input[value="Windows31_Tartan"]:checked) {
+  background-image: url("./images/Windows 3.1/Tartan.bmp");
+}
+body:has(input[value="Windows31_Castle"]:checked) {
+  background-image: url("./images/Windows 3.1/Castle.bmp");
+}
+body:has(input[value="Windows31_Arcade"]:checked) {
+  background-image: url("./images/Windows 3.1/Arcade.bmp");
+}
+body:has(input[value="Windows31_Squares"]:checked) {
+  background-image: url("./images/Windows 3.1/Squares.bmp");
+}
+body:has(input[value="Windows31_Cars"]:checked) {
+  background-image: url("./images/Windows 3.1/Cars.bmp");
+}
+body:has(input[value="Windows31_Chitz"]:checked) {
+  background-image: url("./images/Windows 3.1/Chitz.bmp");
+}
+body:has(input[value="Windows31_Flock"]:checked) {
+  background-image: url("./images/Windows 3.1/Flock.bmp");
+}
+body:has(input[value="Windows31_256color"]:checked) {
+  background-image: url("./images/Windows 3.1/256 color.bmp");
+}
+body:has(input[value="Windows31_Honey"]:checked) {
+  background-image: url("./images/Windows 3.1/Honey.bmp");
+}
+body:has(input[value="Windows95_Stitches"]:checked) {
+  background-image: url("./images/Windows 95/Stitches.bmp");
+}
+body:has(input[value="Windows95_Waves"]:checked) {
+  background-image: url("./images/Windows 95/Waves.bmp");
+}
+body:has(input[value="Windows95_Setup"]:checked) {
+  background-image: url("./images/Windows 95/Setup.bmp");
+}
+body:has(input[value="Windows95_Houndstooth"]:checked) {
+  background-image: url("./images/Windows 95/Houndstooth.bmp");
+}
+body:has(input[value="Windows95_Triangles"]:checked) {
+  background-image: url("./images/Windows 95/Triangles.bmp");
+}
+body:has(input[value="Windows95_BlackThatch"]:checked) {
+  background-image: url("./images/Windows 95/Black Thatch.bmp");
+}
+body:has(input[value="Windows95_CarvedStone"]:checked) {
+  background-image: url("./images/Windows 95/Carved Stone.bmp");
+}
+body:has(input[value="Windows95_StrawMat"]:checked) {
+  background-image: url("./images/Windows 95/Straw Mat.bmp");
+}
+body:has(input[value="Windows95_GoldWeave"]:checked) {
+  background-image: url("./images/Windows 95/Gold Weave.bmp");
+}
+body:has(input[value="Windows95_Tiles"]:checked) {
+  background-image: url("./images/Windows 95/Tiles.bmp");
+}
+body:has(input[value="Windows95_Bubbles"]:checked) {
+  background-image: url("./images/Windows 95/Bubbles.bmp");
+}
+body:has(input[value="Windows95_MetalLinks"]:checked) {
+  background-image: url("./images/Windows 95/Metal Links.bmp");
+}
+body:has(input[value="Windows95_Sandstone"]:checked) {
+  background-image: url("./images/Windows 95/Sandstone.bmp");
+}
+body:has(input[value="Windows95_Blocks"]:checked) {
+  background-image: url("./images/Windows 95/Blocks.bmp");
+}
+body:has(input[value="Windows95_Circles"]:checked) {
+  background-image: url("./images/Windows 95/Circles.bmp");
+}
+body:has(input[value="Windows95_Clouds"]:checked) {
+  background-image: url("./images/Windows 95/Clouds.bmp");
+}
+body:has(input[value="Windows95_BlueRivets"]:checked) {
+  background-image: url("./images/Windows 95/Blue Rivets.bmp");
+}
+body:has(input[value="Windows95_Pinstripe"]:checked) {
+  background-image: url("./images/Windows 95/Pinstripe.bmp");
+}
+body:has(input[value="Windows95_Forest"]:checked) {
+  background-image: url("./images/Windows 95/Forest.bmp");
+}
+    </style>
+  </head>
+  <body>
+    <textarea tabindex="-1"></textarea>
+    <div class="mask"></div>
+    <div class="note">
+      Hey!
+      <br>
+      grab the pin to move me.
+    </div>
+  </body>
+</html>
