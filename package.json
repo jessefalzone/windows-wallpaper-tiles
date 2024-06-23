@@ -1,0 +1,23 @@
+{
+  "name": "windows-wallpaper-tiles",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Showcasing tiled Windows wallpapers.",
+  "homepage": "https://github.com/jessefalzone/windows-wallpaper-tiles#readme",
+  "bugs": {
+    "url": "https://github.com/jessefalzone/windows-wallpaper-tiles/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jessefalzone/windows-wallpaper-tiles.git"
+  },
+  "license": "MIT",
+  "author": "Jesse Falzone",
+  "scripts": {
+    "build": "./scripts/generate.sh",
+    "start": "http-server -c-1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

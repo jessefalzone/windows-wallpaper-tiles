@@ -2,18 +2,13 @@
 
 IMAGE_DIR="./images"
 OUTPUT_HTML="index.html"
+CSS_FILE="main.css"
+DEFAULT_CHECKED_VALUE="Windows31_Zigzag"
 
-# HTML boilerplate
-cat <<EOL >$OUTPUT_HTML
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Windows Tiled Backgrounds</title>
-<style>
+# CSS boilerplate
+cat <<EOL >$CSS_FILE
 :root {
---gray: #c3c3c3;
+  --gray: #c3c3c3;
 }
 body {
   height: 100%;
@@ -23,7 +18,7 @@ body {
 #controls {
   margin: 20px;
   background-color: var(--gray);
-  max-width:800px;
+  max-width: 800px;
   border-top: 2px solid var(--gray);
   border-right: 2px solid black;
   border-bottom: 2px solid black;
@@ -50,7 +45,7 @@ body:has(fieldset[data-category="Patterns"] input:checked) {
 EOL
 
 # Create CSS rules for each image
-find "$IMAGE_DIR" -type f \( -iname "*.bmp" -o -iname "*.png" -o -iname "*.jpeg" \) | while IFS= read -r filepath; do
+find "$IMAGE_DIR" -type f -iname "*.png" | while IFS= read -r filepath; do
   # Extract filename without extension
   filename=$(basename -- "$filepath")
   filename="${filename%.*}"
@@ -65,12 +60,18 @@ find "$IMAGE_DIR" -type f \( -iname "*.bmp" -o -iname "*.png" -o -iname "*.jpeg"
   # Add stylesheet rule for each file path
   echo "body:has(input[value=\"$valid_value\"]:checked) {
   background-image: url(\"$filepath\");
-}" >>$OUTPUT_HTML
+}" >>$CSS_FILE
 done
 
-# Complete the stylesheet and start the body
-cat <<EOL >>$OUTPUT_HTML
-</style>
+# HTML boilerplate
+cat <<EOL >$OUTPUT_HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows Tiled Backgrounds</title>
+<link rel="stylesheet" href="$CSS_FILE">
 </head>
 <body>
 <div id="controls">
@@ -103,9 +104,13 @@ find "$IMAGE_DIR" -mindepth 1 -type d | sort | while IFS= read -r subdir; do
     valid_value=$(echo "$valid_value" | tr -cd '[:alnum:]_') # Remove invalid characters
 
     # Add HTML for each radio button
-    echo "<label><input type=\"radio\" id=\"$valid_id\" name=\"background\" value=\"$valid_value\"$(if $checked; then echo " checked"; fi)><span>$filename</span></label>" >>$OUTPUT_HTML
-    checked=false
-  done < <(find "$subdir" -maxdepth 1 -type f \( -iname "*.bmp" -o -iname "*.png" -o -iname "*.jpeg" \) -print0 | sort -z)
+    if [ "$valid_value" == "$DEFAULT_CHECKED_VALUE" ]; then
+      echo "<label><input type=\"radio\" id=\"$valid_id\" name=\"background\" value=\"$valid_value\" checked><span>$filename</span></label>" >>$OUTPUT_HTML
+    else
+      echo "<label><input type=\"radio\" id=\"$valid_id\" name=\"background\" value=\"$valid_value\"$(if $checked; then echo " checked"; fi)><span>$filename</span></label>" >>$OUTPUT_HTML
+      checked=false
+    fi
+  done < <(find "$subdir" -maxdepth 1 -type f -iname "*.png" -print0 | sort -z)
 
   # Close the fieldset
   echo "</fieldset>" >>"$OUTPUT_HTML"
@@ -119,4 +124,4 @@ cat <<EOL >>"$OUTPUT_HTML"
 </html>
 EOL
 
-echo "Done building $OUTPUT_HTML."
+echo "Done building $OUTPUT_HTML and $CSS_FILE."
