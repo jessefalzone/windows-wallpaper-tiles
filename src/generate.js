@@ -2,6 +2,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs/promises';
 import Handlebars from 'handlebars';
+import { minify } from 'html-minifier-terser';
+import CleanCSS from 'clean-css';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -9,8 +11,13 @@ const __dirname = path.dirname(__filename);
 const IMG_DIR = path.resolve(__dirname, '../public/images');
 const TEMPLATE = path.resolve(__dirname, './template.hbs');
 const OUTPUT_HTML = path.resolve(__dirname, '../public/index.html');
-const CSS_FILE = path.resolve(__dirname, '../public/main.css');
-const DEFAULT_CHECKED_VALUE = 'Windows31_Zigzag';
+const OUTPUT_BACKGROUND_CSS = path.resolve(
+  __dirname,
+  '../public/backgrounds.css'
+);
+const OUTPUT_MAIN_CSS = path.resolve(__dirname, '../public/main.css');
+const INPUT_MAIN_CSS = path.resolve(__dirname, './main.css');
+const DEFAULT_CHECKED_VALUE = 'none';
 
 async function getAllFilesAndDirectories(dirPath) {
   let results = [];
@@ -43,7 +50,6 @@ async function getAllFilesAndDirectories(dirPath) {
         name: fileNameWithoutExt.replace(/\\/g, ''),
         path: relativeFilePath,
         value: validValue,
-        default: validValue === DEFAULT_CHECKED_VALUE,
       });
     }
   }
@@ -57,14 +63,23 @@ async function generateCSS(files) {
   for (let file of files) {
     for (let content of file.contents) {
       cssContent += `
-body:has(select option[value="${content.value}"]:checked) {
-  background-image: url("${content.path}");
-}
-`;
+        body:has(select option[value="${content.value}"]:checked) {
+          background-image: url("${content.path}");
+        }
+      `;
     }
   }
+  const options = {
+    level: 2,
+  };
+  cssContent = new CleanCSS(options).minify(cssContent).styles;
+  await fs.writeFile(OUTPUT_BACKGROUND_CSS, cssContent);
 
-  await fs.writeFile(CSS_FILE, cssContent);
+  const mainCss = await fs.readFile(INPUT_MAIN_CSS);
+  await fs.writeFile(
+    OUTPUT_MAIN_CSS,
+    new CleanCSS(options).minify(mainCss).styles
+  );
 }
 
 (async function main() {
@@ -72,10 +87,14 @@ body:has(select option[value="${content.value}"]:checked) {
 
   const templateString = await fs.readFile(TEMPLATE);
   const template = Handlebars.compile(templateString.toString());
-  const html = template({ files });
+  const html = await minify(template({ files }), {
+    minifyJS: true,
+    collapseWhitespace: true,
+    removeComments: true,
+  });
 
   await fs.writeFile(OUTPUT_HTML, html);
   await generateCSS(files);
 
-  console.log(`HTML and CSS files generated: ${OUTPUT_HTML}, ${CSS_FILE}`);
+  console.log('Done!');
 })();
