@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows Tiled Backgrounds</title>
+    <style>
+      :root {
+        --gray: #c3c3c3;
+      }
+      body {
+        height: 100vh;
+        padding: 10px;
+        margin: 0;
+        box-sizing: border-box;
+        line-height: 1.5;
+        background-color: #008080;
+      }
+      #controls {
+        background-color: var(--gray);
+        max-width: 800px;
+        border-top: 2px solid var(--gray);
+        border-right: 2px solid black;
+        border-bottom: 2px solid black;
+        border-left: 2px solid var(--gray);
+      }
+      #inner-wrapper {
+        padding: 20px;
+        border-top: 2px solid white;
+        border-right: 2px solid #555;
+        border-bottom: 2px solid #555;
+        border-left: 2px solid white;
+      }
+      fieldset {
+        margin: 20px 0;
+      }
+      label {
+        white-space: nowrap;
+        margin: 0 5px;
+      }
+      body:has(optgroup[label="Patterns"] option:checked) {
+        image-rendering: pixelated;
+        background-size: 16px;
+      }
+      button {
+        border-top: 1px solid white;
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;
+        border-left: 1px solid white;
+        border-radius: none;
+        padding: 5px;
+        background-color: var(--gray);
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #ccc;
+      }
+      button:active {
+      border: 1px solid black;
+      }
+    </style>
+    <link rel="stylesheet" href="main.css">
+    <script>
+      function track(direction) {
+        const select = document.getElementById('backgroundSelect');
+        const total = select.options.length;
+        let newIndex;
+        if (direction === 'prev') {
+          newIndex = --select.selectedIndex < 0 ? total - 1 : select.selectedIndex;
+        } else {
+          newIndex = ++select.selectedIndex === total ? 0 : select.selectedIndex;
+        }
+        select.selectedIndex = newIndex;
+      }
+    </script>
+  </head>
+  <body>
+    <div id="controls">
+      <div id="inner-wrapper">
+        <h1>Windows Tile Backgrounds</h1>
+        <p>Choose a wallpaper:</p>
+        <select id="backgroundSelect">
+          <option value="none">(None)</option>
+            <optgroup label="Patterns">
+                <option value="Patterns_95Boxes">95-Boxes
+                </option>
+                <option value="Patterns_95Critters">95-Critters
+                </option>
+                <option value="Patterns_95Diamonds">95-Diamonds
+                </option>
+                <option value="Patterns_95Paisley">95-Paisley
+                </option>
+                <option value="Patterns_95Pattern">95-Pattern
+                </option>
+                <option value="Patterns_95Quilt">95-Quilt
+                </option>
+                <option value="Patterns_95Scottie">95-Scottie
+                </option>
+                <option value="Patterns_95Spinner">95-Spinner
+                </option>
+                <option value="Patterns_95Tulip">95-Tulip
+                </option>
+                <option value="Patterns_95Waffle">95-Waffle
+                </option>
+                <option value="Patterns_95Weave">95-Weave
+                </option>
+                <option value="Patterns_Bricks">Bricks
+                </option>
+                <option value="Patterns_Buttons">Buttons
+                </option>
+                <option value="Patterns_CargoNet">Cargo Net
+                </option>
+                <option value="Patterns_Circuits">Circuits
+                </option>
+                <option value="Patterns_Cobblestones">Cobblestones
+                </option>
+                <option value="Patterns_Colosseum">Colosseum
+                </option>
+                <option value="Patterns_Daisies">Daisies
+                </option>
+                <option value="Patterns_Dizzy">Dizzy
+                </option>
+                <option value="Patterns_FieldEffect">Field Effect
+                </option>
+                <option value="Patterns_Key">Key
+                </option>
+                <option value="Patterns_LiveWire">Live Wire
+                </option>
+                <option value="Patterns_Plaid">Plaid
+                </option>
+                <option value="Patterns_Rounder">Rounder
+                </option>
+                <option value="Patterns_Scales">Scales
+                </option>
+                <option value="Patterns_Stone">Stone
+                </option>
+                <option value="Patterns_Thatches">Thatches
+                </option>
+                <option value="Patterns_Tile">Tile
+                </option>
+                <option value="Patterns_Triangles">Triangles
+                </option>
+                <option value="Patterns_WafflesRevenge">Waffle&#x27;s Revenge
+                </option>
+            </optgroup>
+            <optgroup label="Windows 3.0">
+                <option value="Windows30_Boxes">Boxes
+                </option>
+                <option value="Windows30_Paper">Paper
+                </option>
+                <option value="Windows30_Party">Party
+                </option>
+                <option value="Windows30_Pyramid">Pyramid
+                </option>
+                <option value="Windows30_Ribbons">Ribbons
+                </option>
+            </optgroup>
+            <optgroup label="Windows 3.1">
+                <option value="Windows31_256color">256 color
+                </option>
+                <option value="Windows31_Arcade">Arcade
+                </option>
+                <option value="Windows31_Arches">Arches
+                </option>
+                <option value="Windows31_Argyle">Argyle
+                </option>
+                <option value="Windows31_Cars">Cars
+                </option>
+                <option value="Windows31_Castle">Castle
+                </option>
+                <option value="Windows31_Chitz">Chitz
+                </option>
+                <option value="Windows31_Egypt">Egypt
+                </option>
+                <option value="Windows31_Flock">Flock
+                </option>
+                <option value="Windows31_Honey">Honey
+                </option>
+                <option value="Windows31_Leaves">Leaves
+                </option>
+                <option value="Windows31_Marble">Marble
+                </option>
+                <option value="Windows31_Redbrick">Redbrick
+                </option>
+                <option value="Windows31_Rivets">Rivets
+                </option>
+                <option value="Windows31_Squares">Squares
+                </option>
+                <option value="Windows31_Tartan">Tartan
+                </option>
+                <option value="Windows31_Thatch">Thatch
+                </option>
+                <option value="Windows31_Winlogo">Winlogo
+                </option>
+                <option value="Windows31_Zigzag" selected>Zigzag
+                </option>
+            </optgroup>
+            <optgroup label="Windows 95">
+                <option value="Windows95_BlackThatch">Black Thatch
+                </option>
+                <option value="Windows95_Blocks">Blocks
+                </option>
+                <option value="Windows95_BlueRivets">Blue Rivets
+                </option>
+                <option value="Windows95_Bubbles">Bubbles
+                </option>
+                <option value="Windows95_CarvedStone">Carved Stone
+                </option>
+                <option value="Windows95_Circles">Circles
+                </option>
+                <option value="Windows95_Forest">Forest
+                </option>
+                <option value="Windows95_GoldWeave">Gold Weave
+                </option>
+                <option value="Windows95_Houndstooth">Houndstooth
+                </option>
+                <option value="Windows95_MetalLinks">Metal Links
+                </option>
+                <option value="Windows95_Pinstripe">Pinstripe
+                </option>
+                <option value="Windows95_Sandstone">Sandstone
+                </option>
+                <option value="Windows95_Setup">Setup
+                </option>
+                <option value="Windows95_Stitches">Stitches
+                </option>
+                <option value="Windows95_StrawMat">Straw Mat
+                </option>
+                <option value="Windows95_Tiles">Tiles
+                </option>
+                <option value="Windows95_Triangles">Triangles
+                </option>
+                <option value="Windows95_Waves">Waves
+                </option>
+            </optgroup>
+            <optgroup label="Windows NT 4.0">
+                <option value="WindowsNT40_BlueLace">Blue Lace
+                </option>
+                <option value="WindowsNT40_BlueMonday">Blue Monday
+                </option>
+                <option value="WindowsNT40_BlueRivets">Blue Rivets
+                </option>
+                <option value="WindowsNT40_CoffeeBean16">Coffee Bean 16
+                </option>
+                <option value="WindowsNT40_CoffeeBean">Coffee Bean
+                </option>
+                <option value="WindowsNT40_FeatherTexture">Feather Texture
+                </option>
+                <option value="WindowsNT40_FiddleHeads">Fiddle Heads
+                </option>
+                <option value="WindowsNT40_FurryDog16">Furry Dog 16
+                </option>
+                <option value="WindowsNT40_FurryDog">Furry Dog
+                </option>
+                <option value="WindowsNT40_Geometrix">Geometrix
+                </option>
+                <option value="WindowsNT40_GoneFishing">Gone Fishing
+                </option>
+                <option value="WindowsNT40_Greenstone">Greenstone
+                </option>
+                <option value="WindowsNT40_HazyAutumn16">Hazy Autumn 16
+                </option>
+                <option value="WindowsNT40_HikingBoots">Hiking Boots
+                </option>
+                <option value="WindowsNT40_Leather16">Leather 16
+                </option>
+                <option value="WindowsNT40_MapleTrails16">Maple Trails 16
+                </option>
+                <option value="WindowsNT40_MapleTrails">Maple Trails
+                </option>
+                <option value="WindowsNT40_Petroglyph16">Petroglyph 16
+                </option>
+                <option value="WindowsNT40_PrairieWind">Prairie Wind
+                </option>
+                <option value="WindowsNT40_Rhododendron">Rhododendron
+                </option>
+                <option value="WindowsNT40_RiverSumida">River Sumida
+                </option>
+                <option value="WindowsNT40_SantaFeStucco">Santa Fe Stucco
+                </option>
+                <option value="WindowsNT40_Seaside16">Seaside 16
+                </option>
+                <option value="WindowsNT40_Seaside">Seaside
+                </option>
+                <option value="WindowsNT40_Snakeskin">Snakeskin
+                </option>
+                <option value="WindowsNT40_SoapBubbles">Soap Bubbles
+                </option>
+                <option value="WindowsNT40_Solstice">Solstice
+                </option>
+                <option value="WindowsNT40_SwimmingPool">Swimming Pool
+                </option>
+                <option value="WindowsNT40_Upstream16">Upstream 16
+                </option>
+                <option value="WindowsNT40_Zapotec16">Zapotec 16
+                </option>
+                <option value="WindowsNT40_Zapotec">Zapotec
+                </option>
+            </optgroup>
+        </select>
+        <button onclick="track('prev')">Previous</button>
+        <button onclick="track('next')">Next</button>
+      </div>
+    </div>
+  </body>
+</html>
