@@ -15,12 +15,21 @@ button {
 }
 
 #toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #000080;
   padding: 4px 10px;
   border-top: 2px solid white;
   border-right: 2px solid #555;
   border-left: 2px solid white;
   color: white;
+}
+
+#toolbar button {
+  padding: 0 7px;
+  width: 27px;
+  height: 27px;
 }
 
 #controls {
@@ -44,20 +53,25 @@ body:has(optgroup[label='Patterns'] option:checked) {
 }
 
 #buttons {
+  display: flex;
+  gap: 12px;
   margin: 10px 0;
 }
 
 button {
+  color: black;
   border-top: 2px solid white;
   border-right: 2px solid black;
   border-bottom: 2px solid black;
   border-left: 2px solid white;
-  border-radius: none;
-  padding: 10px;
+  border-radius: 1px;
+  padding: 5px 10px;
   background-color: #c3c3c3;
   cursor: pointer;
-  margin-right: 4px;
-  min-width: 100px;
+}
+
+#buttons button {
+  flex: 1;
 }
 
 button:hover {
@@ -66,6 +80,11 @@ button:hover {
 
 button:active {
   border: 1px solid black;
+}
+
+button > img,
+button > span {
+  vertical-align: middle;
 }
 
 select {
