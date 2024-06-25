@@ -64,7 +64,7 @@ async function generateCSS(files) {
   for (let file of files) {
     for (let content of file.contents) {
       backgroundCss += `
-        body:has(select option[value="${content.value}"]:checked) {
+        body:has(option[value="${content.value}"]:checked) {
           background-image: url("${content.path}");
         }
       `;
