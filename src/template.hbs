@@ -15,19 +15,7 @@
     <link rel="stylesheet" href="main.css?v={{mainHash}}">
     <link rel="stylesheet" href="backgrounds.css?v={{backgroundsHash}}">
     <link href="https://tiles.jesse.cafe/" rel="canonical">
-    <script>
-      function track(direction) {
-        const select = document.getElementById('backgroundSelect');
-        const total = select.options.length;
-        let newIndex;
-        if (direction === 'prev') {
-          newIndex = --select.selectedIndex < 0 ? total - 1 : select.selectedIndex;
-        } else {
-          newIndex = ++select.selectedIndex === total ? 0 : select.selectedIndex;
-        }
-        select.selectedIndex = newIndex;
-      }
-    </script>
+    <script src="script.js" defer></script>
   </head>
   <body>
     <div id="controls">
@@ -53,11 +41,11 @@
             {{/each}}
           </select>
           <div id="buttons">
-            <button onclick="track('prev')">
+            <button id="prev">
               <img src="./left-caret.svg" width="18" height="24" alt="Left arrow.">
               <span>Previous</span>
             </button>
-            <button onclick="track('next')">
+            <button id="next">
               <span>Next</span>
               <img src="./right-caret.svg" width="18" height="24" alt="Right arrow.">
             </button>
