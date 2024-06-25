@@ -36,7 +36,7 @@ async function getAllFilesAndDirectories(dirPath) {
         contents: subdirectoryContents,
       });
     } else {
-      if (!file.toLowerCase().endsWith('.png')) {
+      if (!file.toLowerCase().endsWith('.webp')) {
         continue;
       }
 
