@@ -15,15 +15,14 @@
   "author": "Jesse Falzone",
   "type": "module",
   "scripts": {
-    "build": "./scripts/generate.sh",
+    "build": "node src/generate.js",
     "start": "http-server public/ -c-1"
   },
   "devDependencies": {
     "clean-css": "^5.3.3",
+    "handlebars": "^4.7.8",
     "html-minifier-terser": "^7.2.0",
-    "http-server": "^14.1.1"
-  },
-  "dependencies": {
-    "handlebars": "^4.7.8"
+    "http-server": "^14.1.1",
+    "rev-hash": "^4.1.0"
   }
 }
