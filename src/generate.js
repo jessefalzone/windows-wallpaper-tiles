@@ -32,7 +32,7 @@ async function getAllFilesAndDirectories(dirPath) {
     if (fileInfo.isDirectory()) {
       const subdirectoryContents = await getAllFilesAndDirectories(filePath);
       results.push({
-        name: file,
+        name: file.replace(/_/g, ' '),
         contents: subdirectoryContents,
       });
     } else {
@@ -48,7 +48,7 @@ async function getAllFilesAndDirectories(dirPath) {
       let validValue = `${subdirName}_${fileNameWithoutExt}`.replace(/\W/g, '');
 
       results.push({
-        name: fileNameWithoutExt.replace(/\\/g, ''),
+        name: fileNameWithoutExt.replace(/\\/g, '').replace(/_/g, ' '),
         path: relativeFilePath,
         value: validValue,
       });
